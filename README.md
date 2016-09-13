@@ -14,4 +14,5 @@ This demo site utilizes techniques as follows:
 - commonly used flash message bar in Rails (<http://charles4code.blogspot.tw/2016/09/make-standard-flash-message-bar-with.html>)
 - collection_check_boxes (<http://charles4code.blogspot.tw/2016/08/using-collectioncheckboxes-to-simplify.html>)
 
+The demo site: <https://bikeorderform.herokuapp.com/>
 My blog for coding: <http://charles4code.blogspot.tw/>

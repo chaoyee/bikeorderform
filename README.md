@@ -5,7 +5,7 @@ BikeOrderFrom is a site which demos the major functionality from an on-line orde
 
 It consists of an ordering from for choosing models as well as color and size accrodingly.
 
-The color and size attributes are different from model to model.  For example, model A might have blue, red and yellow in colors, model B might have blue only. There is no rule for assigning colors and size to each model. This system builds up a form to setup the color and size configurations for each model. Thus, users can find the correct color abd size to choose for a certain model.
+The color and size attributes are different from model to model.  For example, model A might have blue, red and yellow in colors, model B might have blue only. There is no rule for assigning colors and size to each model. This system builds up a form to setup the color and size configurations for each model. Thus, users can find the correct color and size to choose for a certain model.
 
 This demo site utilizes techniques as follows:
 

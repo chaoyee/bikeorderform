@@ -1,0 +1,106 @@
+<div class="container">
+
+  <h3>Order Info</h3>
+
+  <div class="row" style="font-size: 120%">
+    <div class="col-sm-2">
+      <strong>Po number:</strong>
+    </div>
+    <div class="col-sm-1" style="text-align: right">
+      <%= @order.po_number %>
+    </div>
+    <div class="col-sm-3">
+      <strong>Shipment require date:</strong>
+    </div>
+    <div class="col-sm-2">
+      <%= @order.shipment_require_date %>
+    </div>
+    <div class="col-sm-2">
+      <strong>Order date:</strong>
+    </div>
+    <div class="col-sm-2">
+      <%= @order.order_date %>
+    </div>
+    <br>
+    <div class="col-sm-1">
+      <strong>Ship to:</strong>
+    </div>
+    <div class="col-sm-2" style="text-align: right">
+      <%= @order.ship_to %>
+    </div>
+    <div class="col-sm-3">
+      <strong>Reference:</strong>
+    </div>
+    <div class="col-sm-4">
+      <%= @order.reference %>
+    </div>
+  </div>
+  <br>
+  <hr>
+
+  <h3>Order Details</h3>
+
+  <div class="col-sm-12" style="text-align: right">
+    <h4><strong>Please add a new item here: </strong> &nbsp;
+    <%= link_to 'Add a New Item', new_order_orderdetail_path(@order.id), class: "btn btn-primary btn-sm" %>
+    </h4>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Model Name</th>
+        <th>Size</th>
+        <th>Color</th>
+        <th>Price (USD)</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orderdetails.each do |orderdetail| %>
+        <tr>
+          <td>
+            <%= orderdetail.model.name %>
+          </td>
+          <td>
+            <%= orderdetail.size.name %>
+          </td>
+          <td>
+            <%= orderdetail.color.name %>
+          </td>
+          <td style="text-align: right">
+            <%= number_to_currency(orderdetail.price) %>
+          </td>
+          <td style="text-align: right" >
+            <%= orderdetail.quantity %>
+          </td>
+          <td style="text-align:right">
+            <%= number_to_currency(orderdetail.total_amount) %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_order_orderdetail_path(@order.id, orderdetail), class: "btn btn-primary btn-sm" %>
+          </td>
+          <td>
+            <%= link_to "Destroy", order_orderdetail_path(@order.id, orderdetail), method: :delete, class: "btn btn-warning btn-sm", data: {  confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <div style="text-align:right">
+    <h4>
+      Total quantity: <%= @order.total_quantity %>sets&nbsp;&nbsp;&nbsp;
+      Total amount: USD <%= number_to_currency(@order.total_amount) %>
+      &nbsp;&nbsp;&nbsp;
+    </h4>
+  </div>
+</div>
+<%#= link_to 'Edit', edit_order_path(@order) %>
+<%= link_to 'Back', orders_path, class: "btn btn-info" %>
+<hr>
+
+
+
+

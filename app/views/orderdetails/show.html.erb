@@ -1,0 +1,32 @@
+<p>
+  <strong>Order:</strong>
+  <%= @orderdetail.order_id %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @orderdetail.model_id %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @orderdetail.size_id %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @orderdetail.color_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @orderdetail.price %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @orderdetail.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_order_orderdetail_path(@orderdetail) %> |
+<%= link_to 'Back', order_path(@orderdetail.order_id) %>

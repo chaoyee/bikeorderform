@@ -1,0 +1,3 @@
+$("#orderdetail_select_size_id").html("<%= escape_javascript(select("orderdetail", "size_id", @sizes.collect {|s| [s.name, s.id ] }, { include_blank: false })) %>");
+$("#orderdetail_select_color_id").html("<%= escape_javascript(select("orderdetail", "color_id", @colors.collect {|c| [c.name, c.id ] }, { include_blank: false })) %>");
+$("#orderdetail_text_field_price").html("<%= escape_javascript(text_field_tag("orderdetail", @model.price, style: "text-align: right", disabled: true )) %>");

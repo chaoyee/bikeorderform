@@ -1,0 +1,18 @@
+<%= error_message_for(size) %>
+<div class="modal-default" style="width: 800px">
+  <div class="modal-content">
+    <div class="modal-body">
+      <%= form_for(size) do |f| %>
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+          &nbsp;
+          <%= link_to 'Back', colors_path, class: "btn btn-info" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<%= error_message_for(orderdetail) %>
+<div class="modal-fade">
+  <div class="modal-content">
+    <div class="modal-body">
+      <%= form_for([order, orderdetail]) do |f| %>
+        <h5>PO Number: <%= order.po_number %><h5>
+
+        <table class="table table-hover">
+          <tr>
+            <td>
+              <%= f.label :model_id %>
+            </td>
+            <td>
+              <%= f.select("model_id", Model.all.collect {|m| [ m.name, m.id ] }, { include_blank: false}, prompt: "-select-" )%>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :size_id %>
+            </td>
+            <td>
+              <div id="orderdetail_select_size_id" style="display: inline">
+                <%= f.select("size_id", Model.find_by_id(orderdetail.model_id).sizes.collect {|s| [ s.name, s.id ] }, { include_blank: false }) %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :color_id %>
+            </td>
+            <td>
+              <div id="orderdetail_select_color_id" style="display: inline">
+                <%= f.select("color_id", Model.find_by_id(orderdetail.model_id).colors. collect {|c| [c.name, c.id ] }, { include_blank: false }) %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :price %>
+            </td>
+            <td>
+              <div id="orderdetail_text_field_price"  style="display: inline">
+                <%= f.text_field :price, style: "text-align: right", disabled: true %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :quantity %>
+            </td>
+            <td>
+              <%= f.number_field :quantity, style: "text-align: right" %>
+            </td>
+          </tr>
+        </table>
+
+        <div class="modal-footer">
+          <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..."} %>
+          &nbsp;
+          <%= link_to 'Back', order_path(orderdetail.order_id), class: "btn btn-info" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$('#orderdetail_model_id').on('change', function() {
+    $.ajax({
+      url: '/get_info',
+      type: 'GET',
+      data: { model_id: this.value }
+    })
+  });
+</script>

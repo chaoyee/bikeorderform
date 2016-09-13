@@ -1,0 +1,60 @@
+<%= error_message_for(model) %>
+<div class="modal-default" style="width: 800px">
+  <div class="modal-content">
+    <div class="modal-body">
+      <%= form_for(model) do |f| %>
+        <table class="table table-hover">
+            <tr>
+              <td>
+                <%= f.label "Model Name" %>
+              </td>
+              <td>
+                <%= f.text_field :name, size: "80", placeholder: "Please input the model name....." %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Price USD$ </strong>
+              </td>
+              <td>
+                <%= f.text_field :price, size: "10", style: "text-align: right" %>
+              </td>
+            </tr>
+        </table>
+        <hr>
+        <table width="800">
+          <tr>
+            <td valign=top>
+              <div class="field" >
+                <%= f.label "Please choose the sizes:" %><br/>
+                <%= f.collection_check_boxes :size_ids, Size.all, :id, :name do |b| %>
+                  <div class="collection-check-box">
+                    <%= b.check_box %>
+                    <%= b.label %>
+                  </div>
+                <% end %>
+              </div>
+            </td>
+            <td valign=top>
+              <div class="field" >
+                <%= f.label "Please choose the colours:" %><br/>
+                <%= f.collection_check_boxes :color_ids, Color.all, :id, :name do |b| %>
+                  <div class="collection-check-box">
+                    <%= b.check_box %>
+                    <%= b.label %>
+                  </div>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <div class="modal-footer">
+          <%= f.submit 'Submit', class: 'btn btn-primary', disable_with: "Submitting..." %>
+          &nbsp;
+          <%= link_to 'Back', models_path, class: "btn btn-info" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

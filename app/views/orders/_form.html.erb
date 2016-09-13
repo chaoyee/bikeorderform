@@ -1,0 +1,76 @@
+<%= error_message_for(order) %>
+<div class="modal-default">
+  <div class="modal-content">
+    <div class="modal-body">
+      <%= form_for(order) do |f| %>
+        <table class="table table-hover">
+          <tr>
+            <td class="col-sm-2"><%= f.label :po_number %></td>
+            <td><%= f.text_field :po_number %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :shipment_require_date %></td>
+            <td><%= f.date_field :shipment_require_date %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :order_date %></td>
+            <td><%= f.date_field :order_date %></td>
+            <!-- <td><%#= f.date_select :order_date %></td> -->
+          </tr>
+          <tr>
+            <td><%= f.label :ship_to %></td>
+            <td><%= f.text_field :ship_to %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :reference %></td>
+            <td><%= f.text_area :reference , style: "width: 300px"%></td>
+          </tr>
+        </table>
+
+        <% if !order.orderdetails.empty? %>
+          <hr>
+          <h3>Order Details</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+               <th style="text-align: center">Model Name</th>
+               <th style="text-align: center">Size</th>
+               <th style="text-align: center">Color</th>
+               <th style="text-align: center">Price (USD)</th>
+               <th style="text-align: center">Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= f.fields_for :orderdetails do |od| %>
+                <tr>
+                  <td>
+                    <%= od.select("model_id", Model.all.collect {|m| [ m.name, m.id ]}, { include_blank:  false }) %>
+                  </td>
+                  <td>
+                    <%= od.select("size_id", Model.find_by_id(od.object.model_id).sizes.collect {|s| [ s. name, s.id ] }, { include_blank: false }) %>
+                  </td>
+                  <td>
+                    <%= od.select("color_id", Model.find_by_id(od.object.model_id).colors.  collect {|c| [ c.name, c.id ] }, { include_blank: false }) %>
+                  </td>
+                  <td>
+                    <%= od.text_field :price, value:Model.find_by_id(od.object.model_id).price, disabled: true, style: "text-align: right", size: 10 %>
+                  </td>
+                  <td>
+                    <%= od.number_field :quantity, style: "text-align: right"%>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+
+        <div class="modal-footer">
+          <%= f.submit "Submit", class: "btn btn-primary" %>
+          &nbsp;
+          <%= link_to 'Back', orders_path, class: "btn btn-info" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

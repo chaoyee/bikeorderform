@@ -1,5 +1,6 @@
 class OrderdetailsController < ApplicationController
   before_action :set_orderdetail, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb 'orders', :orders_path
 
   # GET /orderdetails
   # GET /orderdetails.json
@@ -19,11 +20,15 @@ class OrderdetailsController < ApplicationController
     @orderdetail.order_id = @order.id
     @orderdetail.model_id = 1   # initial value
     @orderdetail.price = Model.first.price
+    add_breadcrumb 'new', new_order_orderdetail_path
   end
 
   # GET /orderdetails/1/edit
   def edit
     @order = Order.find(@orderdetail.order_id)
+    add_breadcrumb @order.id, order_path(@order)
+    add_breadcrumb 'orderdetails', order_path(@order)
+    add_breadcrumb @orderdetail.id, edit_order_orderdetail_path
   end
 
   # POST /orderdetails

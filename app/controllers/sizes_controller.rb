@@ -1,5 +1,6 @@
 class SizesController < ApplicationController
   before_action :set_size, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb 'sizes', :sizes_path
 
   # GET /sizes
   # GET /sizes.json
@@ -10,15 +11,18 @@ class SizesController < ApplicationController
   # GET /sizes/1
   # GET /sizes/1.json
   def show
+    add_breadcrumb @size.id, size_path
   end
 
   # GET /sizes/new
   def new
     @size = Size.new
+    add_breadcrumb 'new', new_size_path
   end
 
   # GET /sizes/1/edit
   def edit
+    add_breadcrumb @size.id, edit_size_path
   end
 
   # POST /sizes

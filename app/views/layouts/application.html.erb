@@ -12,6 +12,9 @@
     <div class="container" >
       <%= render 'common/navbar' %>
       <%= notice_message %>
+      <div class='breadcrumb'>
+        <%= render_breadcrumbs tag: :li, separator: "" %>
+      </div>
       <%= yield %>
     </div>
   </body>

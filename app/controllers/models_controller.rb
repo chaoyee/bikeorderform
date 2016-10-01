@@ -1,5 +1,6 @@
 class ModelsController < ApplicationController
   before_action :set_model, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb 'models', :models_path
 
   # GET /models
   # GET /models.json
@@ -10,15 +11,18 @@ class ModelsController < ApplicationController
   # GET /models/1
   # GET /models/1.json
   def show
+    add_breadcrumb @model.id, model_path
   end
 
   # GET /models/new
   def new
     @model = Model.new
+    add_breadcrumb 'new', new_model_path
   end
 
   # GET /models/1/edit
   def edit
+    add_breadcrumb @model.id, edit_model_path
   end
 
   # POST /models

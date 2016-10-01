@@ -1,5 +1,6 @@
 class ColorsController < ApplicationController
   before_action :set_color, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb 'colors', :colors_path
 
   # GET /colors
   # GET /colors.json
@@ -10,15 +11,18 @@ class ColorsController < ApplicationController
   # GET /colors/1
   # GET /colors/1.json
   def show
+    add_breadcrumb @color.id, color_path
   end
 
   # GET /colors/new
   def new
     @color = Color.new
+    add_breadcrumb 'new', new_color_path
   end
 
   # GET /colors/1/edit
   def edit
+    add_breadcrumb @color.id, edit_color_path
   end
 
   # POST /colors

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  add_breadcrumb 'orders', :orders_path
 
   # GET /orders
   # GET /orders.json
@@ -11,16 +12,19 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @orderdetails = @order.orderdetails
+    add_breadcrumb @order.id, order_path
   end
 
   # GET /orders/new
   def new
     @order = Order.new
+    add_breadcrumb 'new', new_order_path
   end
 
   # GET /orders/1/edit
   def edit
     @orderdetails = @order.orderdetails
+    add_breadcrumb @order.id, edit_order_path
   end
 
   # POST /orders

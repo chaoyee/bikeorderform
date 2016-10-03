@@ -5,7 +5,7 @@ class SizesController < ApplicationController
   # GET /sizes
   # GET /sizes.json
   def index
-    @sizes = Size.all
+    @sizes = Size.all.page(params[:page]).per_page(7)
   end
 
   # GET /sizes/1

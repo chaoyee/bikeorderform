@@ -5,7 +5,7 @@ class ColorsController < ApplicationController
   # GET /colors
   # GET /colors.json
   def index
-    @colors = Color.all
+    @colors = Color.all.page(params[:page]).per_page(7)
   end
 
   # GET /colors/1

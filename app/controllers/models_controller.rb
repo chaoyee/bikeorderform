@@ -5,7 +5,7 @@ class ModelsController < ApplicationController
   # GET /models
   # GET /models.json
   def index
-    @models = Model.all
+    @models = Model.all.page(params[:page]).per_page(7)
   end
 
   # GET /models/1

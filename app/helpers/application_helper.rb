@@ -37,4 +37,10 @@ module ApplicationHelper
       'date-today-btn': 'linked',
       'date-today-highlight': 'true'}).html_safe
   end
+
+  def generate_pagination(object_handled)
+    object_paginated = will_paginate(object_handled, renderer: BootstrapPagination::Rails,
+      previous_label: '<', next_label: '>')
+    object_paginated.html_safe if object_paginated
+  end
 end

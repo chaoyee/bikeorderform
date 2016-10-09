@@ -24,11 +24,8 @@ class OrdersController < ApplicationController
       format.json
       fn = "order_#{@order.po_number}_#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.csv"
 
-      # Template approach, is used with views/orders/show.csv.erb
-      format.csv do
-        headers['Content-Disposition'] = "attachment; filename =" + fn
-        headers['Content-Type'] ||= 'text/csv'
-      end
+      # Send_data method approach, is used with the setting of model Orderdetail
+      format.csv { send_data @orderdetails.to_csv, filename: fn }
     end
   end
 

@@ -24,8 +24,8 @@ class OrdersController < ApplicationController
       format.json
       fn = "order_#{@order.po_number}_#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.csv"
 
-      # Send_data method approach, is used with the setting of model Orderdetail
-      format.csv { send_data @orderdetails.to_csv, filename: fn }
+      # Send_data method and exec_query approach
+      format.csv { send_data query_to_csv(@order.id), filename: fn }
     end
   end
 
@@ -85,6 +85,22 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+
+    # Use ActiveRecord::Base.connection.exec_query to query db directly only once.
+    def query_to_csv(order_id)
+      query_string = "select a.po_number as 'PO Number', c.name as 'Model Name', d.name as 'Color',
+          e.name as 'Size', b.price as 'Price', b.quantity as Quantity,
+          (b.price*b.quantity) as 'Total Amount'
+        from orders a, orderdetails b, models c, colors d, sizes e
+        where a.id = b.order_id and b.model_id=c.id and b.color_id=d.id and b.size_id=e.id and b.order_id=#{order_id}"
+      results = ActiveRecord::Base.connection.exec_query(query_string)
+      CSV.generate(headers: true) do |csv|
+        csv << results.columns
+        results.rows.each do |row|
+          csv << row
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

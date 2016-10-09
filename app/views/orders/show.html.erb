@@ -38,7 +38,9 @@
   <br>
   <hr>
 
-  <h3>Order Details</h3>
+  <h3>Order Details &nbsp;&nbsp;
+    <%= link_to 'Export to CSV (order details only)', order_path(@order, format: :csv), class: "btn btn-info" %>
+  </h3>
 
   <div class="col-sm-12" style="text-align: right">
     <h4><strong>Please add a new item here: </strong> &nbsp;

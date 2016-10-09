@@ -29,7 +29,7 @@
           </tr>
         </table>
 
-        <% if !order.orderdetails.empty? %>
+        <% if order.orderdetails.present? %>
           <hr>
           <h3>Order Details</h3>
           <table class="table table-hover">

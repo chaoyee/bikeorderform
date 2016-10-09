@@ -6,13 +6,30 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all.page(params[:page]).per_page(3)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   # GET /orders/1
   # GET /orders/1.json
+  # GET /orders/1.csv
   def show
     @orderdetails = @order.orderdetails
     add_breadcrumb @order.id, order_path
+
+    respond_to do |format|
+      format.html
+      format.json
+      fn = "order_#{@order.po_number}_#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.csv"
+
+      # Template approach, is used with views/orders/show.csv.erb
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename =" + fn
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
   end
 
   # GET /orders/new

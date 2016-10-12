@@ -38,21 +38,9 @@
   <br>
   <hr>
 
-  <div class="row">
-    <div class="col-md-6"><h3>Order Details</h3></div>
-    <div class="col-md-6" align="right">
-      <%= link_to image_tag('csv.png'), order_path(@order, format: :csv) %>
-      <%= link_to image_tag('xlsx.png'), order_path(@order, format: :xlsx) %>
-      <%= link_to image_tag('pdf.png'), order_path(@order, format: :pdf) %>
-    </div>
-  </div>
+  <h3>Order Details</h3>
 
-  <div class="col-sm-12" style="text-align: right">
-    <h4><strong>Please add a new item here: </strong> &nbsp;
-    <%= link_to 'Add a New Item', new_order_orderdetail_path(@order.id), class: "btn btn-primary btn-sm" %>
-    </h4>
-  </div>
-  <table class="table table-hover ">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>Model Name</th>
@@ -85,12 +73,6 @@
           <td style="text-align:right">
             <%= number_to_currency(orderdetail.total_amount) %>
           </td>
-          <td>
-            <%= link_to "Edit", edit_order_orderdetail_path(@order.id, orderdetail), class: "btn btn-primary btn-sm" %>
-          </td>
-          <td>
-            <%= link_to "Destroy", order_orderdetail_path(@order.id, orderdetail), method: :delete, class: "btn btn-warning btn-sm", data: {  confirm: 'Are you sure?' } %>
-          </td>
         </tr>
       <% end %>
     </tbody>
@@ -104,9 +86,6 @@
     </h4>
   </div>
 </div>
-<%#= link_to 'Edit', edit_order_path(@order) %>
-<%= link_to 'Back', orders_path, class: "btn btn-info" %>
-<hr>
 
 
 

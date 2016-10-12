@@ -11,7 +11,7 @@
               <%= f.label :model_id %>
             </td>
             <td>
-              <%= f.select("model_id", Model.all.collect {|m| [ m.name, m.id ] }, { include_blank: false}, prompt: "-select-" )%>
+              <%= f.select("model_id", Model.all.collect {|m| [ m.name, m.id ] }, { include_blank: false}, prompt: "-select-", class: "form-control" )%>
             </td>
           </tr>
           <tr>
@@ -20,7 +20,7 @@
             </td>
             <td>
               <div id="orderdetail_select_size_id" style="display: inline">
-                <%= f.select("size_id", Model.find_by_id(orderdetail.model_id).sizes.collect {|s| [ s.name, s.id ] }, { include_blank: false }) %>
+                <%= f.select("size_id", Model.find_by_id(orderdetail.model_id).sizes.collect {|s| [ s.name, s.id ] }, { include_blank: false }, class: "form-control" ) %>
               </div>
             </td>
           </tr>
@@ -30,7 +30,7 @@
             </td>
             <td>
               <div id="orderdetail_select_color_id" style="display: inline">
-                <%= f.select("color_id", Model.find_by_id(orderdetail.model_id).colors. collect {|c| [c.name, c.id ] }, { include_blank: false }) %>
+                <%= f.select("color_id", Model.find_by_id(orderdetail.model_id).colors. collect {|c| [c.name, c.id ] }, { include_blank: false }, class: "form-control" ) %>
               </div>
             </td>
           </tr>

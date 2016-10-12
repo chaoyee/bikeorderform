@@ -22,10 +22,13 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      fn = "order_#{@order.po_number}_#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}.csv"
+      fn = "order_#{@order.po_number}_#{Time.now.strftime("%Y-%m-%d %H:%M:%S")}"
 
-      # Send_data method and exec_query approach
-      format.csv { send_data DocumentService.new(@order.id).to_csv, filename: fn }
+      # Send_data method and exec_query approach to CSV file
+      format.csv { send_data DocumentService.new(@order.id).to_csv, filename: fn + '.csv' }
+
+      # gem 'to_spreadsheet' to xlsx file
+      format.xlsx { render xlsx: :show, filename: fn}
     end
   end
 

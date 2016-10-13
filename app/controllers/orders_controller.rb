@@ -28,7 +28,10 @@ class OrdersController < ApplicationController
       format.csv { send_data DocumentService.new(@order.id).to_csv, filename: fn + '.csv' }
 
       # gem 'to_spreadsheet' to xlsx file
-      format.xlsx { render xlsx: :show, filename: fn}
+      format.xlsx { render xlsx: :show, filename: fn }
+
+      # gem 'wicked-pdf' to pdf file
+      format.pdf { render pdf: fn, disposition: 'attachment'}
     end
   end
 

@@ -1,0 +1,92 @@
+<div class="container">
+
+  <h3>Order Info</h3>
+
+  <div class="row" style="font-size: 120%">
+    <div class="col-sm-2">
+      <strong>Po number:</strong>
+    </div>
+    <div class="col-sm-1" >
+      <%= @order.po_number %>
+    </div>
+    <div class="col-sm-3">
+      <strong>Shipment require date:</strong>
+    </div>
+    <div class="col-sm-2">
+      <%= @order.shipment_require_date %>
+    </div>
+    <div class="col-sm-2">
+      <strong>Order date:</strong>
+    </div>
+    <div class="col-sm-2">
+      <%= @order.order_date %>
+    </div>
+    <br>
+    <div class="col-sm-1">
+      <strong>Ship to:</strong>
+    </div>
+    <div class="col-sm-2">
+      <%= @order.ship_to %>
+    </div>
+    <div class="col-sm-3">
+      <strong>Reference:</strong>
+    </div>
+    <div class="col-sm-4">
+      <%= @order.reference %>
+    </div>
+  </div>
+  <br>
+  <hr>
+
+  <h3>Order Details</h3>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Model Name</th>
+        <th>Size</th>
+        <th>Color</th>
+        <th>Price (USD)</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orderdetails.each do |orderdetail| %>
+        <tr>
+          <td>
+            <%= orderdetail.model.name %>
+          </td>
+          <td>
+            <%= orderdetail.size.name %>
+          </td>
+          <td>
+            <%= orderdetail.color.name %>
+          </td>
+          <td style="text-align: right">
+            <%= number_to_currency(orderdetail.price) %>
+          </td>
+          <td style="text-align: right" >
+            <%= orderdetail.quantity %>
+          </td>
+          <td style="text-align:right">
+            <%= number_to_currency(orderdetail.total_amount) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <div style="text-align:right">
+    <h4>
+      Total quantity: <%= @order.total_quantity %>sets&nbsp;&nbsp;&nbsp;
+      Total amount: USD <%= number_to_currency(@order.total_amount) %>
+      &nbsp;&nbsp;&nbsp;
+    </h4>
+  </div>
+</div>
+
+
+
+

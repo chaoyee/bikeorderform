@@ -15,6 +15,8 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   # GET /orders/1.csv
+  # GET /orders/1.xlsx
+  # GET /orders/1.pdf
   def show
     @orderdetails = @order.orderdetails.includes(:model, :size, :color)
     add_breadcrumb @order.id, order_path

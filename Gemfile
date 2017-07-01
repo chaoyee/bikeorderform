@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.1'
+gem 'rails', '>= 5.1.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -49,6 +48,9 @@ group :development, :test do
   gem 'sqlite3'
   gem 'awesome_rails_console'
   gem 'pry'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
